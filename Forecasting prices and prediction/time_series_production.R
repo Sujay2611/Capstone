@@ -48,6 +48,3 @@ rss <- sum((predicted - actual) ^ 2)
 tss <- sum((actual - mean(actual)) ^ 2)
 rsq <- 1 - rss/tss
 rsq
-
-
-

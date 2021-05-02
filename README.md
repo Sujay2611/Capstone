@@ -1,0 +1,6 @@
+# AI for Aquaculture in India
+
+Team details - 
+* SUJAY GAD - PES1201700177
+* MAYUR RB - PES1201700714
+* PRIYADITH TP - PES1201701324

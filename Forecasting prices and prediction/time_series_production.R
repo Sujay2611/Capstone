@@ -1,0 +1,53 @@
+aquaculture_production <- read.csv("~/Desktop/Capstone/aqua_production.csv")
+aquaculture_production
+aquaculture_production$Quantity..tonnes.=as.numeric(gsub(",", "", aquaculture_production$Quantity..tonnes, fixed = TRUE))
+aquaculture_production
+adf.test(aquaculture_production$Quantity..tonnes.)
+aquaculture_d1 <- diff(aquaculture_production$Quantity..tonnes., differences = 1)
+adf.test(aquaculture_d1)
+aquaculture_d2 <- diff(aquaculture_production$Quantity..tonnes., differences = 2)
+adf.test(aquaculture_d2)
+time_series<-ts(aquaculture_production$Quantity..tonnes.,start=1980,end=2018)
+model1<-naive(time_series)
+summary(model1)
+plot(pacf(aquaculture_d2))
+model2<-ar(time_series)
+f2<-forecast(model2)
+summary(f2)
+plot(acf(aquaculture_d2))
+model3<-ma(time_series,order = 1)
+f3<-forecast(model3)
+summary(f3)
+model4<-arima(time_series,order=c(1,2,1))
+f4<-forecast(model4)
+summary(f4)
+model6<-lm(aqua_production$Quantity..tonnes.~aqua_production$Year)
+summary(model6)
+plot(aqua_production$Year,aqua_production$Quantity..tonnes.,col="blue",abline(lm(aqua_production$Quantity..tonnes.~aqua_production$Year)))
+model7<-ets(time_series)
+f7<-forecast(model7)
+summary(f7)
+model8<-HoltWinters(time_series,beta=FALSE,gamma=FALSE)
+f8<-forecast(model8)
+summary(f8)
+model9<-HoltWinters(time_series,gamma=FALSE)
+f9<-forecast(model9)
+summary(f9)
+y<-aquaculture_production$Quantity..tonnes.
+x<-aquaculture_production$Year
+model11<-lm(y ~ poly(x,3,raw = TRUE))
+f11<-forecast(model11,newdata = data.frame(x=c(2019,2020,2021,2022)))
+summary(f11)
+df <- data.frame(c1,c2)
+df
+ggplot(df, aes(x=c1,y=c2))+geom_point()+geom_point(data=df[40:49, ],color="red")+labs(y="Aquaculture production (tonnes)", x="Year")
+actual<-aquaculture_production$Quantity..tonnes.
+a<-c(f11$fitted)
+predicted<-a
+rss <- sum((predicted - actual) ^ 2)
+tss <- sum((actual - mean(actual)) ^ 2)
+rsq <- 1 - rss/tss
+rsq
+
+
+

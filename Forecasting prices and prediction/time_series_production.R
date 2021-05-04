@@ -1,3 +1,7 @@
+library(knitr)
+library(tseries)
+library(ggplot2)
+library(forecast)
 aquaculture_production <- read.csv("~/Desktop/Capstone/aqua_production.csv")
 aquaculture_production
 aquaculture_production$Quantity..tonnes.=as.numeric(gsub(",", "", aquaculture_production$Quantity..tonnes, fixed = TRUE))
@@ -36,7 +40,7 @@ summary(f9)
 y<-aquaculture_production$Quantity..tonnes.
 x<-aquaculture_production$Year
 model11<-lm(y ~ poly(x,3,raw = TRUE))
-f11<-forecast(model11,newdata = data.frame(x=c(2019,2020,2021,2022)))
+f11<-forecast(model11,newdata = data.frame(x=c(2019,2020,2021,2022,2023,2024,2025,2026,2027,2028)))
 summary(f11)
 df <- data.frame(c1,c2)
 df

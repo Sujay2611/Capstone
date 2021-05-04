@@ -42,6 +42,12 @@ x<-aquaculture_production$Year
 model11<-lm(y ~ poly(x,3,raw = TRUE))
 f11<-forecast(model11,newdata = data.frame(x=c(2019,2020,2021,2022,2023,2024,2025,2026,2027,2028)))
 summary(f11)
+a<-c(f11$fitted)
+b<-c(f11$mean)
+d<-c(aquaculture_production$Quantity..tonnes.,b)
+e<-c(1980:2028)
+c1 <- e
+c2 <- d
 df <- data.frame(c1,c2)
 df
 ggplot(df, aes(x=c1,y=c2))+geom_point()+geom_point(data=df[40:49, ],color="red")+labs(y="Aquaculture production (tonnes)", x="Year")
